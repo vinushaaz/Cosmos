@@ -1,111 +1,168 @@
-# 🔵 COSMO EYES | Animated OLED Robot Companion
+# 🔵 COSMO EYES
+### A Mini Animated Robot Companion
 
-**A tiny robot with expressive eyes, built with embedded systems.**
+**An embedded systems project combining OLED animation, touch interaction, and a compact transparent hardware enclosure.**
 
-COSMO EYES is a mini interactive robot-eye project developed using an ESP32-C3 Super Mini, an SSD1306 OLED display, and a touch sensor. It brings a simple display to life through animated eye movements, blinking, and touch-controlled expressions.
+COSMO EYES is a miniature interactive robot-face project built around an ESP32-C3 Super Mini and an OLED display. It brings a tiny electronic companion to life through expressive cyan eyes, blinking animations, and touch-controlled facial expressions.
 
-The goal is to combine embedded programming, display graphics, hardware interfacing, and interactive design into a compact project.
+The project explores how microcontroller programming and simple display graphics can transform a small electronic device into an interactive character.
+
+---
 
 ## ✨ Features
 
-- Animated cyan-style robot eyes on a dark OLED background
-- Four touch-controlled expressions: Normal, Happy, Angry, and Sleepy
-- Automatic blinking animation
-- Eye movement to create a lively idle state
-- Touch sensor input for user interaction
-- Non-blocking animation timing using `millis()`
-- Compact design suitable for a mini robot or keychain concept
+- 🔹 Animated cyan-style robot eyes
+- 👀 Multiple facial expressions
+- 😊 Normal, Happy, Angry, and Sleepy eye modes
+- 😉 Automatic blinking and idle eye movement
+- 👆 Touch-controlled expression switching
+- ⚡ Real-time animation using non-blocking timing
+- 🧩 Compact transparent enclosure
+- 🔌 USB access for programming and power, depending on the hardware configuration
+
+---
+
+## 📸 Hardware Prototype
+
+The current prototype combines a small OLED display and electronic components inside a transparent enclosure, creating a compact, portable robot companion.
+
+The enclosure allows the electronics to remain visible while protecting the assembly.
+
+**Prototype highlights**
+- Small-form-factor construction
+- Custom animated OLED interface
+- Transparent protective casing
+- Integrated electronic hardware
+- Touch-responsive interaction
+
+> Add your actual prototype photographs here to showcase the assembled device and its expressions.
+
+---
 
 ## 🛠️ Hardware Components
 
 | Component | Purpose |
 |---|---|
-| ESP32-C3 Super Mini | Main microcontroller |
-| SSD1306 128×64 OLED | Displays the animated eyes |
-| Capacitive touch sensor | Changes the eye expression |
-| Jumper wires | Hardware connections |
-| USB cable | Programming and power during development |
+| ESP32-C3 Super Mini | Microcontroller and animation control |
+| SSD1306 OLED display | Displays the robot eyes |
+| Capacitive touch sensor | User interaction and expression changes |
+| USB connection | Programming and power, depending on the board |
+| Transparent enclosure | Protects and houses the electronics |
+| Connecting wires | Electrical interconnections |
 
-## 🔌 Pin Connections
+*The exact board variant, touch-sensor module, and battery or power circuitry should be documented after verification.*
 
-| Signal | ESP32-C3 Pin |
+---
+
+## 🔌 Pin Configuration
+
+The current firmware uses the following pin assignments.
+
+| Signal | ESP32-C3 GPIO |
 |---|---|
 | OLED SDA | GPIO 8 |
 | OLED SCL | GPIO 9 |
-| Touch sensor OUT | GPIO 4 |
-| OLED VCC | According to module specifications |
-| OLED GND | GND |
-| Touch sensor GND | GND |
+| Touch sensor output | GPIO 4 |
 
-**Note:** The pin assignments are based on the current firmware configuration. Verify the actual module pinouts and voltage requirements before connecting the hardware.
+The OLED communicates with the microcontroller over I²C.
 
-## 👀 Eye Expressions
+Verify the physical wiring and module voltage requirements before connecting the hardware.
 
-| Expression | Behaviour |
+---
+
+## 👁️ Eye Expressions
+
+| Mode | Visual behaviour |
 |---|---|
-| Normal | Rounded eyes with idle movement |
+| Normal | Rounded eyes with gentle movement |
 | Happy | Wider, shorter eyes |
 | Angry | Narrow eyes with angled eyelids |
-| Sleepy | Drooping eyelids and gentle movement |
+| Sleepy | Drooping eyelids and relaxed movement |
 
-Touch the sensor to cycle through the expressions.
+A touch advances the display to the next expression.
 
-## ⚙️ How It Works
+The OLED is monochrome, so the cyan appearance depends on the display module itself.
 
-1. The ESP32-C3 initializes the OLED over I²C.
-2. The firmware draws the eye shapes using the Adafruit GFX and SSD1306 libraries.
-3. The main loop checks for a new touch event.
-4. Each valid touch advances the expression state.
-5. The animation loop updates eye positions and blinking using `millis()`.
+---
 
-This approach keeps the display animation and touch interaction responsive without relying on long delays.
+## ⚙️ System Architecture
 
-## 💻 Software Requirements
+The project consists of three main functional blocks:
+
+1. **Input:** The touch sensor detects user interaction.
+2. **Processing:** The ESP32-C3 manages expression states and animation timing.
+3. **Output:** The OLED renders the eye graphics and animations.
+
+The firmware uses a state-based approach to switch expressions and update the display.
+
+Animation timing uses `millis()` to reduce dependence on long blocking delays, keeping the main loop responsive to touch events.
+
+---
+
+## 💻 Software and Tools
 
 - Arduino IDE
+- Arduino C++
 - ESP32 board support package
 - Adafruit GFX Library
 - Adafruit SSD1306 Library
+- I²C communication
+
+---
 
 ## 🚀 Getting Started
 
-1. Install the required libraries in Arduino IDE.
-2. Open `cosmo_eyes.ino`.
-3. Select the appropriate ESP32-C3 board and port.
-4. Verify the OLED and touch sensor wiring.
-5. Upload the firmware.
-6. Touch the sensor to explore the different expressions.
+1. Install Arduino IDE.
+2. Install the ESP32 board support package.
+3. Install the Adafruit GFX and Adafruit SSD1306 libraries.
+4. Connect the OLED and touch sensor using the verified pin configuration.
+5. Open the firmware sketch.
+6. Select the appropriate ESP32-C3 board and serial port.
+7. Compile and upload the firmware.
+8. Touch the sensor to cycle through the expressions.
 
-## 🧠 Engineering Concepts Applied
+---
 
-- Microcontroller programming using Arduino C++
-- I²C communication
+## 🧠 Engineering Concepts Demonstrated
+
+- Embedded C++ programming
 - GPIO input handling
-- Event detection and debounce logic
-- State-based interaction
-- Frame-based display animation
+- I²C peripheral communication
+- OLED graphics rendering
+- State-based firmware design
+- Touch-event detection and debounce
 - Non-blocking timing with `millis()`
-- Embedded hardware and software integration
+- Hardware and firmware integration
+- Compact electronic product prototyping
+
+---
 
 ## 🔮 Future Improvements
 
-- Smoother transitions between expressions
-- More expressive eye shapes and animations
-- Rechargeable battery operation
-- Compact transparent acrylic enclosure
-- Low-power idle mode
-- Additional touch gestures and interaction patterns
+- Smoother eye transitions and eyelid animations
+- Additional expressions and interaction patterns
+- Improved enclosure finishing and internal mounting
+- Verified rechargeable battery integration
+- Low-power idle and sleep modes
+- A short animation demo and complete wiring diagram
+- Improved documentation and reproducible hardware assembly
 
-## 🎯 Project Goal
+---
 
-To build a compact, interactive electronic companion while developing practical skills in embedded firmware, hardware interfacing, and real-time display animation.
+## 🎯 Project Objective
+
+The goal of COSMO EYES is to develop a compact interactive electronic companion while gaining practical experience in embedded firmware, display interfacing, and hardware prototyping.
+
+It is also an exploration of how expressive interfaces can make small electronic devices feel more engaging.
+
+---
 
 ## 👩‍💻 Developer
 
-**Vinu**
-
+**Vinu**  
 Electronic Engineering | Embedded Systems | Microcontrollers
 
 ---
 
-*Built with curiosity, code, and a little bit of robot personality.* 🤖
+*Built with code, curiosity, and a little robot personality.* 🤖
+
